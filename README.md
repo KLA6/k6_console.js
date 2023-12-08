@@ -14,16 +14,18 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
 ```
 
 ## Usage
+If your prefix is a blank, the below is the usage example.
+If your prefix is not a blank, e.g., 'pf_', then `FCD` will be `pf_FCD`.
 ```
-// If your prefix is '', then...
-FCD ( ... ) // console.debug   ( ... )
-FCE ( ... ) // console.error   ( ... )
-FCW ( ... ) // console.warn    ( ... )
-FCG ( ... ) // console.group   ( ... )
-FCGE( ... ) // console.groupEnd( ... )
-FCT ( ... ) // console.trace   ( ... )
-FCI ( ... ) // console.info    ( ... )
-FCL ( ... ) // console.log     ( ... )
+FCD ( ... ) // = console.debug   ( ... )
+FCE ( ... ) // = console.error   ( ... )
+FCW ( ... ) // = console.warn    ( ... )
+FCG ( ... ) // = console.group   ( ... )
+FCGE( ... ) // = console.groupEnd( ... )
+FCT ( ... ) // = console.trace   ( ... )
+FCI ( ... ) // = console.info    ( ... )
+FCL ( ... ) // = console.log     ( ... )
+FCLR( obj ) // = console.log     ( JSON.stringify( obj ) ) with recursive obj.
 ```
 
 ## Production Mode Preparation

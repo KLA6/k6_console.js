@@ -4,7 +4,7 @@ class k6_console {
 
     this.prefix = P.prefix               || ''
     this.header = P.header               || 'K6'
-    this.mobile = P.mobile               || 'bl' // tl, tr, bl, br, false
+    this.mobile = P.mobile               || 'bl'; if( this.mobile == 'false' ) this.mobile = false // tl, tr, bl, br, false
     this.prod   = P.prod || P.production || false
 
     console.warn( 'k6_console.js:', `Don't forget <script> const ${this.prefix}CD = null, ${this.prefix}FCD = ${this.prefix}FCE = ${this.prefix}FCW = ${this.prefix}FCG = ${this.prefix}FCGE = ${this.prefix}FCT = ${this.prefix}FCI = ${this.prefix}FCL = ${this.prefix}FCLR = () => {}; </script> for the production mode.]` )
@@ -39,7 +39,7 @@ class k6_console {
     window[ this.prefix + 'FCT'  ] = this.prod ? ( ... args ) => { console.trace   ( `%c${this.header}`, 'color: white; background-color: blue   ;', ... args ); this.FM( 'white', 'blue'   , args ) } : () => {} // Function Console Trace
     window[ this.prefix + 'FCI'  ] = this.prod ? ( ... args ) => { console.info    ( `%c${this.header}`, 'color: black; background-color: cyan   ;', ... args ); this.FM( 'black', 'cyan'   , args ) } : () => {} // Function Console Info
     window[ this.prefix + 'FCL'  ] = this.prod ? ( ... args ) => { console.log     ( `%c${this.header}`, 'color: white; background-color: green  ;', ... args ); this.FM( 'white', 'green'  , args ) } : () => {} // Function Console Log
-    window[ this.prefix + 'FCLR' ] = this.prod ? ( object, mobile = false ) => {                                                                                                                                  // Function Console Log Recursive
+    window[ this.prefix + 'FCLR' ] = this.prod ? ( object   ) => {                                                                                                                                  // Function Console Log Recursive
       function replacer( K, V ) { if( typeof V === 'object'
                                   &&         V !==  null    ) { if( cache.indexOf( V ) !== -1 ) return
                                                                     cache.push   ( V )        } return V }
