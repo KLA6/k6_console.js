@@ -7,7 +7,7 @@ class k6_console {
     this.mobile = P.mobile               || 'bl'; if( this.mobile == 'false' ) this.mobile = false // tl, tr, bl, br, false
     this.prod   = P.prod || P.production || false
 
-    if( ! this.prod ) console.warn( 'k6_console.js:', `Don't forget production: true or const ${this.prefix}CD = null, ${this.prefix}FCD = ${this.prefix}FCE = ${this.prefix}FCW = ${this.prefix}FCG = ${this.prefix}FCGE = ${this.prefix}FCT = ${this.prefix}FCI = ${this.prefix}FCL = ${this.prefix}FCLR = () => {}; for the production mode.` )
+    if( ! this.prod ) console.warn( 'k6_console.js:', `Don't forget "production: true" or "const ${this.prefix}CD = null, ${this.prefix}FCD = ${this.prefix}FCE = ${this.prefix}FCW = ${this.prefix}FCG = ${this.prefix}FCGE = ${this.prefix}FCT = ${this.prefix}FCI = ${this.prefix}FCL = ${this.prefix}FCLR = () => {}" for the production mode.` )
 
     if( this.mobile ) {
       this.FC                    =  document.createElement( 'pre' ); document.addEventListener( 'DOMContentLoaded', () => { document.body.appendChild( this.FC ) } )
