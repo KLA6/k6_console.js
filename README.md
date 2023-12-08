@@ -4,7 +4,7 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
 
 ## Install
 ```
-<script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1@k6_console.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1/k6_console.min.js"></script>
 <script> new k6_console( {
   prefix    : ''   , 
   header    : 'K6' ,  
@@ -14,9 +14,10 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
 ```
 
 ## Usage
-If your prefix is a blank, the below is the usage example.
-If your prefix is not a blank, e.g., 'pf_', then `FCD` will be `pf_FCD`.
+If your prefix is blank, the following are usage examples.
+If your prefix is not blank, but e.g., 'pf_', then `FCD()` will be `pf_FCD()`.
 ```
+CD          // = true
 FCD ( ... ) // = console.debug   ( ... )
 FCE ( ... ) // = console.error   ( ... )
 FCW ( ... ) // = console.warn    ( ... )
@@ -29,11 +30,11 @@ FCLR( obj ) // = console.log     ( JSON.stringify( obj ) ) with recursive obj.
 ```
 
 ## Production Mode Preparation
-You'd better hide the instalation part on the production, but it's optional.
+It's recommended to hide the installation part in the production mode, but it's optional.
 The below is an example in PHP.
 ```
 <? if( $DEBUG ) { ?>
-  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1@k6_console.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1/k6_console.min.js"></script>
   <script> new k6_console() </script>
 <? } else { ?>
   <script> const CD = null, FCD = FCE = FCW = FCG = FCGE = FCT = FCI = FCL = FCLR = () => {}; </script>
