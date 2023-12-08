@@ -4,7 +4,7 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
 
 ## Install
 ```
-<script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1/k6_console.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.2/k6_console.min.js"></script>
 <script> new k6_console( {
   prefix    : ''   , 
   header    : 'K6' ,  
@@ -35,7 +35,7 @@ However, it's recommended to hide the installation part at all in the production
 The following is an example in PHP.
 ```
 <? if( $DEBUG ) { ?>
-  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1/k6_console.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.2/k6_console.min.js"></script>
   <script> new k6_console() </script>
 <? } else { ?>
   <script> const CD = null, FCD = FCE = FCW = FCG = FCGE = FCT = FCI = FCL = FCLR = () => {}; </script>
