@@ -30,9 +30,9 @@ FCLR( obj ) // = console.log     ( JSON.stringify( obj ) ) with recursive obj.
 ```
 
 ## Production Mode Preparation
-It's recommended to hide the installation part at all in the production mode.
-But it's optional, and you can just set `production: true` to hide all `console....` things from this library.
-The below is an example in PHP.
+You can set `production: true` to hide all `console....` things from this library.
+However, it's recommended to hide the installation part at all in the production mode, because it will save tiny load time more.
+The following is an example in PHP.
 ```
 <? if( $DEBUG ) { ?>
   <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.1/k6_console.min.js"></script>
