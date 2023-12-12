@@ -2,11 +2,12 @@ class k6_console {
 
   constructor( P = {} ) {
 
-    this.prefix = P.prefix               || ''
-    this.header = P.header               || 'K6'
-    this.mobile = P.mobile               || 'bl'; if( P.mobile == false || P.mobile == 'false' ) this.mobile = false // tl, tr, bl, br, false
-    this.worker = P.worker               || false
     this.prod   = P.prod || P.production || false
+    this.global = P.global               || true
+    this.worker = P.worker               || false
+    this.mobile = P.mobile               || 'bl'; if( P.mobile == false || P.mobile == 'false' ) this.mobile = false // tl, tr, bl, br, false
+    this.header = P.header               || 'K6'
+    this.prefix = P.prefix               || ''
 
     if( ! this.prod ) console.warn( 'k6_console.js:', `Don't forget "production: true" or "const ${this.prefix}CD = null, ${this.prefix}FCD = ${this.prefix}FCE = ${this.prefix}FCW = ${this.prefix}FCG = ${this.prefix}FCGE = ${this.prefix}FCT = ${this.prefix}FCI = ${this.prefix}FCL = ${this.prefix}FCLR = () => {}" for the production mode.` )
 
@@ -31,29 +32,40 @@ class k6_console {
       this.FC.innerText = json ? JSON.stringify( args ) : args
     } // function
 
+    this.CD   = this.prod ? false    : true                                                                                                                                                  // Config           Debug
+    this.FCD  = this.prod ? () => {} : ( ... args ) => { console.debug   ( '%c' + this.header, 'color: white; background-color: magenta;', ... args ); this.FM( 'white', 'magenta', args ) } // Function Console Debug
+    this.FCE  = this.prod ? () => {} : ( ... args ) => { console.error   ( '%c' + this.header, 'color: white; background-color: red    ;', ... args ); this.FM( 'white', 'red'    , args ) } // Function Console Error
+    this.FCW  = this.prod ? () => {} : ( ... args ) => { console.warn    ( '%c' + this.header, 'color: black; background-color: yellow ;', ... args ); this.FM( 'black', 'yellow' , args ) } // Function Console Warn
+    this.FCG  = this.prod ? () => {} : ( ... args ) => { console.group   ( '%c' + this.header, 'color: white; background-color: grey   ;', ... args ); this.FM( 'white', 'grey'   , args ) } // Function Console Group
+    this.FCGE = this.prod ? () => {} : ( ... args ) => { console.groupEnd(                                                                          )                                      } // Function Console Group End
+    this.FCT  = this.prod ? () => {} : ( ... args ) => { console.trace   ( '%c' + this.header, 'color: white; background-color: blue   ;', ... args ); this.FM( 'white', 'blue'   , args ) } // Function Console Trace
+    this.FCI  = this.prod ? () => {} : ( ... args ) => { console.info    ( '%c' + this.header, 'color: black; background-color: cyan   ;', ... args ); this.FM( 'black', 'cyan'   , args ) } // Function Console Info
+    this.FCL  = this.prod ? () => {} : ( ... args ) => { console.log     ( '%c' + this.header, 'color: white; background-color: green  ;', ... args ); this.FM( 'white', 'green'  , args ) } // Function Console Log
+    this.FCLR = this.prod ? () => {} : ( object   ) => {                                                                                                                                     // Function Console Log Recursive
+      function replacer( K, V ) { if( typeof V === 'object'
+                                  &&         V !==  null    ) { if( cache.indexOf( V ) !== -1 ) return
+                                                                    cache.push   ( V )        } return V }
+      let                                              cache = []
+      let result = JSON.stringify( object, replacer ); cache = null
+      console.log( '%c' + this.header, 'color: white; background-color: black;', result        )
+      this   .FM (                            'white',                 'black' , result, false )
+    } // function
+
     function T_name( worker, prefix, name ) { return worker ? `window[ '${prefix}${name}' ]`
                                                             :     `self.${prefix}${name}` }
 
-    eval( `
-      ${ T_name( this.worker, this.prefix, 'CD'   ) } = this.prod ? false    : true                                                                                                                                                  // Config           Debug
-      ${ T_name( this.worker, this.prefix, 'FCD'  ) } = this.prod ? () => {} : ( ... args ) => { console.debug   ( '%c' + this.header, 'color: white; background-color: magenta;', ... args ); this.FM( 'white', 'magenta', args ) } // Function Console Debug
-      ${ T_name( this.worker, this.prefix, 'FCE'  ) } = this.prod ? () => {} : ( ... args ) => { console.error   ( '%c' + this.header, 'color: white; background-color: red    ;', ... args ); this.FM( 'white', 'red'    , args ) } // Function Console Error
-      ${ T_name( this.worker, this.prefix, 'FCW'  ) } = this.prod ? () => {} : ( ... args ) => { console.warn    ( '%c' + this.header, 'color: black; background-color: yellow ;', ... args ); this.FM( 'black', 'yellow' , args ) } // Function Console Warn
-      ${ T_name( this.worker, this.prefix, 'FCG'  ) } = this.prod ? () => {} : ( ... args ) => { console.group   ( '%c' + this.header, 'color: white; background-color: grey   ;', ... args ); this.FM( 'white', 'grey'   , args ) } // Function Console Group
-      ${ T_name( this.worker, this.prefix, 'FCGE' ) } = this.prod ? () => {} : ( ... args ) => { console.groupEnd(                                                                          )                                      } // Function Console Group End
-      ${ T_name( this.worker, this.prefix, 'FCT'  ) } = this.prod ? () => {} : ( ... args ) => { console.trace   ( '%c' + this.header, 'color: white; background-color: blue   ;', ... args ); this.FM( 'white', 'blue'   , args ) } // Function Console Trace
-      ${ T_name( this.worker, this.prefix, 'FCI'  ) } = this.prod ? () => {} : ( ... args ) => { console.info    ( '%c' + this.header, 'color: black; background-color: cyan   ;', ... args ); this.FM( 'black', 'cyan'   , args ) } // Function Console Info
-      ${ T_name( this.worker, this.prefix, 'FCL'  ) } = this.prod ? () => {} : ( ... args ) => { console.log     ( '%c' + this.header, 'color: white; background-color: green  ;', ... args ); this.FM( 'white', 'green'  , args ) } // Function Console Log
-      ${ T_name( this.worker, this.prefix, 'FCLR' ) } = this.prod ? () => {} : ( object   ) => {                                                                                                                                     // Function Console Log Recursive
-        function replacer( K, V ) { if( typeof V === 'object'
-                                    &&         V !==  null    ) { if( cache.indexOf( V ) !== -1 ) return
-                                                                      cache.push   ( V )        } return V }
-        let                                              cache = []
-        let result = JSON.stringify( object, replacer ); cache = null
-        console.log( '%c' + this.header, 'color: white; background-color: black;', result        )
-        this   .FM (                            'white',                 'black' , result, false )
-      } // function
-    ` )
+    if( this.global ) eval(
+      `${ T_name( this.worker, this.prefix, 'CD'   ) } = this.CD  ;` +
+      `${ T_name( this.worker, this.prefix, 'FCD'  ) } = this.FCD ;` +
+      `${ T_name( this.worker, this.prefix, 'FCE'  ) } = this.FCE ;` +
+      `${ T_name( this.worker, this.prefix, 'FCW'  ) } = this.FCW ;` +
+      `${ T_name( this.worker, this.prefix, 'FCG'  ) } = this.FCG ;` +
+      `${ T_name( this.worker, this.prefix, 'FCGE' ) } = this.FCGE;` +
+      `${ T_name( this.worker, this.prefix, 'FCT'  ) } = this.FCT ;` +
+      `${ T_name( this.worker, this.prefix, 'FCI'  ) } = this.FCI ;` +
+      `${ T_name( this.worker, this.prefix, 'FCL'  ) } = this.FCL ;` +
+      `${ T_name( this.worker, this.prefix, 'FCLR' ) } = this.FCLR;`
+    ) // if
 
   } // constructor
 

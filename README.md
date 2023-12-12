@@ -6,11 +6,12 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
 ```
 <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.3/k6_console.min.js"></script>
 <script> new k6_console( {
-  prefix    : ''   ,
-  header    : 'K6' ,
+  production: false, // If this is true, no console message shows.
+  global    : true , // If this is true, functions will be gloval, not in the class instance.
+  worker    : false, // If this is true, 'windows' will be 'self'.
   mobile    : 'bl' , // tl, tr, bl, br, false
-  worker    : false,
-  production: false, // If this is true, no console things appear.
+  header    : 'K6' ,
+  prefix    : ''   ,
 } ) </script>
 ```
 
