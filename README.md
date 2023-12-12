@@ -4,7 +4,7 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
 
 ## Install
 ```
-<script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.3/k6_console.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.4/k6_console.min.js"></script>
 <script> new k6_console( {
   production: false, // If this is true, no console message shows.
   global    : true , // If this is true, functions will be gloval, not in the class instance.
@@ -37,7 +37,7 @@ However, it's recommended to hide the installation part at all in the production
 The following is an example in PHP.
 ```
 <? if( $DEBUG ) { ?>
-  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.3/k6_console.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.4/k6_console.min.js"></script>
   <script> new k6_console() </script>
 <? } else { ?>
   <script> const CD = null, FCD = FCE = FCW = FCG = FCGE = FCT = FCI = FCL = FCLR = () => {}; </script>
