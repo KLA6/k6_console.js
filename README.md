@@ -9,7 +9,7 @@ Secondly, to show the `console....` things at a corner on a mobile device screen
   prefix    : ''   ,
   header    : 'K6' ,
   mobile    : 'bl' , // tl, tr, bl, br, false
-  worker    : false
+  worker    : false,
   production: false, // If this is true, no console things appear.
 } ) </script>
 ```
