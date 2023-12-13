@@ -51,8 +51,8 @@ class k6_console {
       this   .FM (                            'white',                 'black' , result, false )
     } // function
 
-    function T_name( worker, prefix, name ) { return worker ? `window[ '${prefix}${name}' ]`
-                                                            :     `self.${prefix}${name}` }
+    function T_name( worker, prefix, name ) { return worker ?     `self.${prefix}${name}`
+                                                            : `window[ '${prefix}${name}' ]` }
 
     if( this.global ) eval(
       `${ T_name( this.worker, this.prefix, 'CD'   ) } = this.CD  ;` +
