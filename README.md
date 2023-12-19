@@ -37,7 +37,7 @@ However, it's recommended to hide the installation part at all in the production
 The following is an example in PHP.
 ```
 <? if( $DEBUG ) { ?>
-  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.7/k6_console.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/KLA6/k6_console.js@v0.0.8/k6_console.min.js"></script>
   <script> new k6_console() </script>
 <? } else { ?>
   <script> const CD = null, FCD = FCE = FCW = FCG = FCGE = FCT = FCI = FCL = FCLR = () => {}; </script>
