@@ -32,23 +32,23 @@ class k6_console {
       this.FC.innerText = json ? JSON.stringify( args ) : args
     } // function
 
-    this.CD   = this.prod ? false    : true                                                                                                                                                  // Config           Debug
-    this.FCD  = this.prod ? () => {} : ( ... args ) => { console.debug   ( '%c' + this.header, 'color: white; background-color: magenta;', ... args ); this.FM( 'white', 'magenta', args ) } // Function Console Debug
-    this.FCE  = this.prod ? () => {} : ( ... args ) => { console.error   ( '%c' + this.header, 'color: white; background-color: red    ;', ... args ); this.FM( 'white', 'red'    , args ) } // Function Console Error
-    this.FCW  = this.prod ? () => {} : ( ... args ) => { console.warn    ( '%c' + this.header, 'color: black; background-color: yellow ;', ... args ); this.FM( 'black', 'yellow' , args ) } // Function Console Warn
-    this.FCG  = this.prod ? () => {} : ( ... args ) => { console.group   ( '%c' + this.header, 'color: white; background-color: grey   ;', ... args ); this.FM( 'white', 'grey'   , args ) } // Function Console Group
-    this.FCGE = this.prod ? () => {} : ( ... args ) => { console.groupEnd(                                                                          )                                      } // Function Console Group End
-    this.FCT  = this.prod ? () => {} : ( ... args ) => { console.trace   ( '%c' + this.header, 'color: white; background-color: blue   ;', ... args ); this.FM( 'white', 'blue'   , args ) } // Function Console Trace
-    this.FCI  = this.prod ? () => {} : ( ... args ) => { console.info    ( '%c' + this.header, 'color: black; background-color: cyan   ;', ... args ); this.FM( 'black', 'cyan'   , args ) } // Function Console Info
-    this.FCL  = this.prod ? () => {} : ( ... args ) => { console.log     ( '%c' + this.header, 'color: white; background-color: green  ;', ... args ); this.FM( 'white', 'green'  , args ) } // Function Console Log
-    this.FCLR = this.prod ? () => {} : ( object   ) => {                                                                                                                                     // Function Console Log Recursive
+    this.CD   = this.prod ? false    : true                                                                                                                                                    // Config           Debug
+    this.FCD  = this.prod ? () => {} : ( ... args ) => { console.debug   ( `%c${this.header}%s`, 'color: white; background-color: magenta;', ... args ); this.FM( 'white', 'magenta', args ) } // Function Console Debug
+    this.FCE  = this.prod ? () => {} : ( ... args ) => { console.error   ( `%c${this.header}%s`, 'color: white; background-color: red    ;', ... args ); this.FM( 'white', 'red'    , args ) } // Function Console Error
+    this.FCW  = this.prod ? () => {} : ( ... args ) => { console.warn    ( `%c${this.header}%s`, 'color: black; background-color: yellow ;', ... args ); this.FM( 'black', 'yellow' , args ) } // Function Console Warn
+    this.FCG  = this.prod ? () => {} : ( ... args ) => { console.group   ( `%c${this.header}%s`, 'color: white; background-color: grey   ;', ... args ); this.FM( 'white', 'grey'   , args ) } // Function Console Group
+    this.FCGE = this.prod ? () => {} : ( ... args ) => { console.groupEnd(                                                                            )                                      } // Function Console Group End
+    this.FCT  = this.prod ? () => {} : ( ... args ) => { console.trace   ( `%c${this.header}%s`, 'color: white; background-color: blue   ;', ... args ); this.FM( 'white', 'blue'   , args ) } // Function Console Trace
+    this.FCI  = this.prod ? () => {} : ( ... args ) => { console.info    ( `%c${this.header}%s`, 'color: black; background-color: cyan   ;', ... args ); this.FM( 'black', 'cyan'   , args ) } // Function Console Info
+    this.FCL  = this.prod ? () => {} : ( ... args ) => { console.log     ( `%c${this.header}%s`, 'color: white; background-color: green  ;', ... args ); this.FM( 'white', 'green'  , args ) } // Function Console Log
+    this.FCLR = this.prod ? () => {} : ( object   ) => {                                                                                                                                       // Function Console Log Recursive
       function replacer( K, V ) { if( typeof V === 'object'
                                   &&         V !==  null    ) { if( cache.indexOf( V ) !== -1 ) return
                                                                     cache.push   ( V )        } return V }
       let                                              cache = []
       let result = JSON.stringify( object, replacer ); cache = null
-      console.log( '%c' + this.header, 'color: white; background-color: black;', result        )
-      this   .FM (                            'white',                 'black' , result, false )
+      console.log( `%c${this.header}%s`, 'color: white; background-color: black;', result        )
+      this   .FM (                              'white',                 'black' , result, false )
     } // function
 
     function T_name( worker, prefix, name ) { return worker ?     `self.${prefix}${name}`
