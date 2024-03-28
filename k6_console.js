@@ -16,8 +16,9 @@ class k6_console {
       this.FC.id                 = 'k6_console'
       this.FC.style.position     = 'fixed'
       this.FC.style.fontSize     = '12px'
-      this.FC.style.margin       = '10px 8px'
-      this.FC.style.padding      =  '6px 8px'
+      this.FC.style.lineHeight   =  '1'
+      this.FC.style.margin       =  '8px'
+      this.FC.style.padding      =  '8px'
       this.FC.style.borderRadius =  '4px'
       if( this.mobile == 'tl' ) { this.FC.style.top    = 0; this.FC.style.left  = 0 }
       if( this.mobile == 'tr' ) { this.FC.style.top    = 0; this.FC.style.right = 0 }
@@ -37,7 +38,7 @@ class k6_console {
     this.FCE  = this.prod ? () => {} : ( ... args ) => { console.error   ( `%c${this.header}%s`, 'color: white; background-color: red    ;', '%c %s', '', ... args ); this.FM( 'white', 'red'    , args ) } // Function Console Error
     this.FCW  = this.prod ? () => {} : ( ... args ) => { console.warn    ( `%c${this.header}%s`, 'color: black; background-color: yellow ;', '%c %s', '', ... args ); this.FM( 'black', 'yellow' , args ) } // Function Console Warn
     this.FCG  = this.prod ? () => {} : ( ... args ) => { console.group   ( `%c${this.header}%s`, 'color: white; background-color: grey   ;', '%c %s', '', ... args ); this.FM( 'white', 'grey'   , args ) } // Function Console Group
-    this.FCGE = this.prod ? () => {} : ( ... args ) => { console.groupEnd(                                                                            )                                                   } // Function Console Group End
+    this.FCGE = this.prod ? () => {} : ( ... args ) => { console.groupEnd(                                                                                         )                                      } // Function Console Group End
     this.FCT  = this.prod ? () => {} : ( ... args ) => { console.trace   ( `%c${this.header}%s`, 'color: white; background-color: blue   ;', '%c %s', '', ... args ); this.FM( 'white', 'blue'   , args ) } // Function Console Trace
     this.FCI  = this.prod ? () => {} : ( ... args ) => { console.info    ( `%c${this.header}%s`, 'color: black; background-color: cyan   ;', '%c %s', '', ... args ); this.FM( 'black', 'cyan'   , args ) } // Function Console Info
     this.FCL  = this.prod ? () => {} : ( ... args ) => { console.log     ( `%c${this.header}%s`, 'color: white; background-color: green  ;', '%c %s', '', ... args ); this.FM( 'white', 'green'  , args ) } // Function Console Log
